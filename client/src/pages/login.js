@@ -24,6 +24,7 @@ const Login = () => {
                 setLoginStatus(response.data[0].username)
             }
         })
+        navigate('/home')
     }
 
     useEffect(() => {

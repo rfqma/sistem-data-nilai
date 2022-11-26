@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 const FormData = () => {
 
@@ -13,7 +14,10 @@ const FormData = () => {
 
     const [siswaList, setSiswaList] = useState([])
 
-    const addData = () => {
+    let navigate = useNavigate()
+
+    const addData = (event) => {
+        event.preventDefault()
         axios.post('http://localhost:3001/form-data', {
             nis: nis,
             namaSiswa: namaSiswa,
@@ -36,6 +40,7 @@ const FormData = () => {
                 }
             ])
         })
+        navigate('/view-data')
     }
 
     return (
@@ -47,7 +52,7 @@ const FormData = () => {
                         <p className="text-gray-400">Masukkan Data Nilai </p>
                     </div>
                     <div>
-                        <form onSubmit={addData}>
+                        <form className="mt-5" onSubmit={addData}>
                             <div className="mb-6">
                                 <label htmlFor="nis" className="block mb-2 text-sm text-gray-600">Nomor Induk Siswa</label>
                                 <input onChange={(event) => { setNis(event.target.value) }} type="number" name="nis" placeholder="0123456" required className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300" />
@@ -78,7 +83,7 @@ const FormData = () => {
                             </div>
                             <div className="mb-6">
                                 <button type="submit" className="w-full px-2 py-3 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none hover:bg-indigo-700">
-                                    Submit
+                                    Tambah Data
                                 </button>
                             </div>
                         </form>

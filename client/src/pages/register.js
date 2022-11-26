@@ -16,8 +16,8 @@ const Register = () => {
             password: passwordReg
         }).then((response) => {
             console.log(response)
-            navigate('/login')
         })
+        navigate('/')
     }
 
     return (

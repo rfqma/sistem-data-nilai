@@ -8,7 +8,6 @@ import Register from "./pages/register"
 import ViewData from "./pages/viewData"
 import FormData from "./pages/formData"
 
-
 const App = () => {
   return (
     <>
@@ -26,4 +25,4 @@ const App = () => {
     </>
   )
 }
-export default App;
+export default App

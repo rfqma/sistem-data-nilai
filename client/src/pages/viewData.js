@@ -39,7 +39,6 @@ const ViewData = () => {
                                     <th className="p-3 font-semibold bg-gray-700  text-white white border border-white hidden lg:table-cell">Nilai B. Indonesia</th>
                                     <th className="p-3 font-semibold bg-gray-700  text-white white border border-white hidden lg:table-cell">Nilai B. Inggris</th>
                                     <th className="p-3 font-semibold bg-gray-700  text-white white border border-white hidden lg:table-cell">Nilai IPA</th>
-                                    <th className="p-3 font-semibold bg-gray-700  text-white white border border-white hidden lg:table-cell rounded-tr-lg">Action</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y">
@@ -78,17 +77,6 @@ const ViewData = () => {
                                                 <td className="w-full lg:w-auto p-3 text-gray-800 border border-b border-white bg-gray-200 text-center block lg:table-cell relative lg:static">
                                                     <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nilai IPA</span>
                                                     {res.nilaiIpa}
-                                                </td>
-                                                <td className="w-full lg:w-auto p-3 text-gray-800 border border-b border-white bg-gray-200 text-center block lg:table-cell relative lg:static ">
-                                                    <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Action</span>
-                                                    <div className="flex flex-wrap gap-2 my-3">
-                                                        <button className="text-white bg-cyan-500  hover:bg-cyan-800  focus:ring-4 focus:ring-cyan-300 rounded-lg font-medium text-sm px-5 py-2">
-                                                            Edit
-                                                        </button>
-                                                        <button className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg font-medium text-sm px-3 py-2">
-                                                            Delete
-                                                        </button>
-                                                    </div>
                                                 </td>
                                             </tr>
                                         </>

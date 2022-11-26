@@ -1,16 +1,20 @@
+// Library Declaration
 const mysql = require('mysql')
 const cors = require('cors')
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-
-const app = express()
-
 const bcrypt = require('bcrypt')
+const cryptojs = require('crypto-js')
+// End of Library Declaration
+
+// Variable to use Library
+const app = express()
 const saltRounds = 10
+// End of Variable to use Library
 
-
+// Express and another Library Usage
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -28,19 +32,18 @@ app.use(session({
         expires: 60 * 60 * 24
     }
 }))
+// End of Express and another Library Usage
 
-
-
-// DEKLARASI DATABASE
+// Database Declaration
 const db = mysql.createConnection({
     user: 'root',
     host: 'localhost',
     password: '',
     database: 'db_sekolah'
 })
-// END OF DEKLARASI DATABASE
+// End of Database Declaration
 
-// POST REGISTER
+// Post Register
 app.post('/register', (req, res) => {
     const username = req.body.username
     const password = req.body.password
@@ -57,8 +60,9 @@ app.post('/register', (req, res) => {
             })
     })
 })
-// END OF POST REGISTER
+// End of Post Register
 
+// Get Login
 app.get("/login", (req, res) => {
     if (req.session.user) {
         res.send({ loggedIn: true, user: req.session.user })
@@ -66,8 +70,9 @@ app.get("/login", (req, res) => {
         res.send({ loggedIn: false })
     }
 })
+// End of Get Login
 
-// POST LOGIN
+// Post Login
 app.post('/login', (req, res) => {
     const username = req.body.username
     const password = req.body.password
@@ -94,9 +99,9 @@ app.post('/login', (req, res) => {
             }
         })
 })
-// END OF POST LOGIN
+// End of Post Login
 
-// POST FORM DATA
+// Post Form Data
 app.post('/form-data', (req, res) => {
     const nis = req.body.nis
     const namaSiswa = req.body.namaSiswa
@@ -106,8 +111,11 @@ app.post('/form-data', (req, res) => {
     const nilaiBinggris = req.body.nilaiBinggris
     const nilaiIpa = req.body.nilaiIpa
 
+    const secret = cryptojs.enc.Utf8.parse("kriptografi")
+    var namaHashed = cryptojs.HmacSHA256(namaSiswa, secret).toString(cryptojs.enc.Base64)
+
     db.query("INSERT INTO data_nilai (nis, namaSiswa, kelasSiswa, nilaiMatematika, nilaiBindonesia, nilaiBinggris, nilaiIpa) VALUES (?,?,?,?,?,?,?)",
-        [nis, namaSiswa, kelasSiswa, nilaiMatematika, nilaiBindonesia, nilaiBinggris, nilaiIpa],
+        [nis, namaHashed, kelasSiswa, nilaiMatematika, nilaiBindonesia, nilaiBinggris, nilaiIpa],
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -116,10 +124,11 @@ app.post('/form-data', (req, res) => {
             }
         })
 })
-// END OF POST FORM DATA
+// End of Post Form Data
 
-// GET VIEW DATA
+// Get View Data
 app.get("/view-data", (req, res) => {
+
     db.query("SELECT * FROM data_nilai", (err, result) => {
         if (err) {
             console.log(err)
@@ -128,8 +137,10 @@ app.get("/view-data", (req, res) => {
         }
     })
 })
-// END OF GET VIEW DATA
+// End of Get View Data
 
+// Port Run Function
 app.listen(3001, () => {
     console.log("Server is running on port 3001")
 })
+// End of Port Run Function

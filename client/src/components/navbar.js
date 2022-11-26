@@ -8,7 +8,7 @@ const Navbar = () => {
                     <span className="font-bold text-lg">SMP 'V'</span>
                 </div>
                 <div className="container items-center justify-center p-5 mx-auto text-gray-100 capitalize">
-                    <a href="/" className="border-b-2 border-transparent focus:text-indigo-600 focus:outline-none hover:text-gray-400  hover:border-blue-500 mx-1.5 sm:mx-6">home</a>
+                    <a href="/home" className="border-b-2 border-transparent focus:text-indigo-600 focus:outline-none hover:text-gray-400  hover:border-blue-500 mx-1.5 sm:mx-6">home</a>
                     <a href="/view-data" className="border-b-2 border-transparent focus:text-indigo-600 focus:outline-none hover:text-gray-400  hover:border-blue-500 mx-1.5 sm:mx-6">List Data Siswa</a>
                     <a href="/form-data" className="border-b-2 border-transparent focus:text-indigo-600 focus:outline-none hover:text-gray-400  hover:border-blue-500 mx-1.5 sm:mx-6">Tambah Data Siswa</a>
                 </div>
